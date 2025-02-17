@@ -1,23 +1,34 @@
-// Get the modal
+// main content fade in
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeInElements = document.querySelectorAll('.fade-in');
+
+    const checkVisibility = () => {
+        fadeInElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                el.classList.add('visible'); // Add visible class when element is in viewport
+            }
+        });
+    };
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility();
+});
+
+// Navigation modal
 var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+document.getElementById("myBtn").onclick = function() {
     modal.style.display = "flex";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+document.getElementsByClassName("close")[0].onclick = function() {
     modal.style.display = "none";
+
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
